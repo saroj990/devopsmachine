@@ -1,0 +1,31 @@
+# Local-only notes (if copied into this folder)
+devops-course-cursor-build-plan.md
+
+# Dependencies and build
+node_modules/
+dist/
+dist-ssr/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment
+.env
+.env.*
+*.local
+
+# OS and editors
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
