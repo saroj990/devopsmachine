@@ -40,6 +40,21 @@ echo "node_modules/" >> .gitignore
 git add .gitignore && git commit -m "Ignore node_modules"
 ```
 
+## Hands-on commands
+
+```bash
+cd /tmp/git-lab
+git checkout -b feature/readme 2>/dev/null || git checkout feature/readme
+echo "## Docs" >> README.md 2>/dev/null || echo "# App" > README.md
+git add README.md && git commit -m "Update readme"
+git checkout main
+git merge feature/readme -m "Merge feature/readme"
+printf '%s\n' '*.log' 'config/app.env' '.env' >> .gitignore
+git add .gitignore && git commit -m "Expand gitignore"
+git status
+git remote -v
+```
+
 ## Hands-on lab
 
 **Objective:** Feature branch workflow.

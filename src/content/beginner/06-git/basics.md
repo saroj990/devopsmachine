@@ -45,6 +45,20 @@ git branch
 git log --oneline
 ```
 
+## Hands-on commands
+
+```bash
+rm -rf /tmp/git-lab && mkdir /tmp/git-lab && cd /tmp/git-lab
+git init -b main
+echo "console.log('hi')" > app.js
+git add app.js && git commit -m "Add app entrypoint"
+git checkout -b feature/demo
+echo "// todo" >> app.js && git add app.js && git commit -m "Add todo comment"
+git checkout main
+git log --oneline --graph --all
+git diff main..feature/demo
+```
+
 ## Hands-on lab
 
 **Objective:** First repository.
