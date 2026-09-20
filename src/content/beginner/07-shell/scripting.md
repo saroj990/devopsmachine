@@ -41,6 +41,26 @@ echo "Hello $NAME"
 
 Save as `hello.sh`, `chmod +x hello.sh`, run `./hello.sh DevOps`.
 
+## Hands-on commands
+
+```bash
+cd /tmp && cat > hello.sh << 'EOF'
+#!/bin/bash
+if [ -z "$1" ]; then echo "Usage: $0 NAME"; exit 1; fi
+echo "Hello $1"
+exit 0
+EOF
+chmod +x hello.sh
+./hello.sh DevOps
+echo "Last exit code: $?"
+
+cat > count.sh << 'EOF'
+#!/bin/bash
+for i in 1 2 3; do echo "step $i"; done
+EOF
+chmod +x count.sh && ./count.sh
+```
+
 ## Hands-on lab
 
 **Objective:** Build `backup.sh`.
