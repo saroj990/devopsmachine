@@ -24,6 +24,24 @@ flowchart LR
   Dep --> Mon[Monitor]
 ```
 
+## Hands-on commands
+
+Model pipeline stages as a script:
+
+```bash
+cat > /tmp/pipeline.sh << 'EOF'
+#!/bin/bash
+set -e
+echo "[1/4] Build"; sleep 1
+echo "[2/4] Test"; npm test 2>/dev/null || echo "  (skip if no package.json)"
+echo "[3/4] Package"; echo "artifact=app.tar.gz"
+echo "[4/4] Deploy (dry-run)"; echo "Would deploy to staging"
+EOF
+chmod +x /tmp/pipeline.sh
+/tmp/pipeline.sh
+echo "Pipeline exit: $?"
+```
+
 ## Hands-on lab
 
 On paper, draw your team’s pipeline. Mark manual steps to automate first.
