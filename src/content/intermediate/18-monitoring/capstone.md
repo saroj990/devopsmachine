@@ -21,6 +21,21 @@ Combine containers, Compose, CI, Nginx, HTTPS, cloud concepts, IaC, and monitori
               PostgreSQL
 ```
 
+## Hands-on commands
+
+End-to-end command checklist (adapt paths to your project):
+
+```bash
+git clone <your-repo> && cd <your-repo>
+docker compose up -d --build
+curl -sf http://localhost/api/health || curl -sf http://localhost/
+docker compose logs --tail=20
+# After CI is configured:
+git push origin main
+# On server:
+./deploy.sh && curl -I https://your-domain.example/
+```
+
 ## Steps
 
 1. **App:** Containerize frontend and API (or monolith + static).

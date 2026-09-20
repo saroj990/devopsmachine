@@ -21,6 +21,18 @@ docker stats
 journalctl -u nginx -n 20 --no-pager
 ```
 
+## Hands-on commands
+
+```bash
+# Host metrics snapshot
+uptime
+free -h 2>/dev/null || vm_stat | head -5
+df -h /
+docker stats --no-stream 2>/dev/null | head -5 || echo "Start a container to see docker stats"
+curl -s -o /dev/null -w "latency_total=%{time_total}s\n" https://example.com
+journalctl --since "10 min ago" -p err --no-pager 2>/dev/null | tail -5 || true
+```
+
 ## Hands-on lab
 
 Define one SLO (e.g. 99% requests < 500ms). Pick one metric and one log line to prove it.
