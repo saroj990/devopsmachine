@@ -41,6 +41,16 @@ curl -I https://example.com
 ss -tulpn
 ```
 
+## Hands-on commands
+
+```bash
+ping -c 4 1.1.1.1
+curl -sS -o /dev/null -w "time_total=%{time_total}s code=%{http_code}\n" https://example.com
+curl -I https://example.com 2>/dev/null | head -5
+ss -tulpn 2>/dev/null | head -15 || netstat -tulpn 2>/dev/null | head -15
+dig +short example.com A 2>/dev/null || nslookup example.com 2>/dev/null | head -6
+```
+
 ## Hands-on lab
 
 **Objective:** Verify a local or remote endpoint.

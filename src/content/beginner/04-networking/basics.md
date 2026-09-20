@@ -54,6 +54,16 @@ ip addr
 # or: ifconfig
 ```
 
+## Hands-on commands
+
+```bash
+ip addr show 2>/dev/null | grep -E "inet " || ifconfig | grep "inet "
+getent hosts localhost
+getent hosts example.com | head -1
+nc -zv 127.0.0.1 22 2>&1 | head -1 || echo "nc not installed — try: ss -tln | grep :22"
+cat /etc/services | grep -E "^\s*(http|https|ssh)\s" | head -5
+```
+
 ## Hands-on lab
 
 **Objective:** Match services to ports.
