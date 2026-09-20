@@ -239,24 +239,3 @@ export function allBeginnerLessons() {
   return beginnerCourse.modules.flatMap((m) => m.lessons)
 }
 
-export function findLesson(lessonId: string) {
-  for (const mod of beginnerCourse.modules) {
-    const lesson = mod.lessons.find((l) => l.id === lessonId)
-    if (lesson) return { module: mod, lesson }
-  }
-  return null
-}
-
-export function getNextLessonId(lessonId: string): string | null {
-  const lessons = allBeginnerLessons()
-  const idx = lessons.findIndex((l) => l.id === lessonId)
-  if (idx === -1 || idx === lessons.length - 1) return null
-  return lessons[idx + 1].id
-}
-
-export function getPrevLessonId(lessonId: string): string | null {
-  const lessons = allBeginnerLessons()
-  const idx = lessons.findIndex((l) => l.id === lessonId)
-  if (idx <= 0) return null
-  return lessons[idx - 1].id
-}
