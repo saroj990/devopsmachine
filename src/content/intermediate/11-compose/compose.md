@@ -42,6 +42,26 @@ docker compose up -d
 docker compose ps
 ```
 
+## Hands-on commands
+
+```bash
+mkdir -p /tmp/compose-lab && cd /tmp/compose-lab
+cat > docker-compose.yml << 'EOF'
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+  redis:
+    image: redis:alpine
+EOF
+docker compose up -d
+docker compose ps
+curl -I http://localhost:8081
+docker compose logs web --tail 3
+docker compose down
+```
+
 ## Hands-on lab
 
 Add a healthcheck to `db` and confirm `app` starts after DB is ready.
