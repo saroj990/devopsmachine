@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Quiz } from '../types/course'
 import { setQuizScore } from '../lib/progress'
 
@@ -14,6 +14,15 @@ export function QuizPanel({ quiz, onComplete }: QuizPanelProps) {
   const [correctCount, setCorrectCount] = useState(0)
   const [finished, setFinished] = useState(false)
   const [finalScore, setFinalScore] = useState(0)
+
+  useEffect(() => {
+    setIndex(0)
+    setSelected(null)
+    setRevealed(false)
+    setCorrectCount(0)
+    setFinished(false)
+    setFinalScore(0)
+  }, [quiz.lessonId])
 
   const q = quiz.questions[index]
 
@@ -63,7 +72,7 @@ export function QuizPanel({ quiz, onComplete }: QuizPanelProps) {
           className="mt-4 rounded-lg bg-[var(--color-accent)] px-4 py-2 text-sm font-medium text-white hover:opacity-90"
           onClick={reset}
         >
-          Retry quiz
+          Try quiz again
         </button>
       </section>
     )

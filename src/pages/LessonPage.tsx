@@ -54,6 +54,7 @@ export function LessonPage() {
         <MarkdownRenderer content={content} />
         {quiz && (
           <QuizPanel
+            key={lesson.id}
             quiz={quiz}
             onComplete={() => {
               markLessonComplete(lesson.id)
