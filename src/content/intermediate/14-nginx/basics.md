@@ -32,6 +32,18 @@ server {
 }
 ```
 
+## Hands-on commands
+
+```bash
+# After installing nginx — test config without applying bad files:
+sudo nginx -t
+curl -I http://127.0.0.1/
+echo 'server { listen 8082; location / { return 200 "lab\n"; } }' | sudo tee /etc/nginx/conf.d/lab.conf
+sudo nginx -t && sudo systemctl reload nginx
+curl -s http://127.0.0.1:8082/
+sudo rm -f /etc/nginx/conf.d/lab.conf && sudo systemctl reload nginx
+```
+
 ## Hands-on lab
 
 Proxy `/api` to a local Node process; serve static files on `/`.
