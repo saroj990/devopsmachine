@@ -40,6 +40,22 @@ echo $APP_ENV
 APP_PORT=8080 node -e 'console.log(process.env.APP_PORT)'
 ```
 
+## Hands-on commands
+
+```bash
+mkdir -p ~/devops-lab/config && cd ~/devops-lab
+cat > config/app.env.example << 'EOF'
+APP_ENV=development
+APP_PORT=8080
+EOF
+cp config/app.env.example config/app.env
+grep -q 'config/app.env' .gitignore 2>/dev/null || echo "config/app.env" >> .gitignore
+set -a && source config/app.env && set +a
+echo "Running as APP_ENV=$APP_ENV on port $APP_PORT"
+APP_ENV=production bash -c 'echo "Simulated prod: APP_ENV=$APP_ENV"'
+env | grep -E '^APP_' || true
+```
+
 ## Hands-on lab
 
 **Objective:** Two configurations.

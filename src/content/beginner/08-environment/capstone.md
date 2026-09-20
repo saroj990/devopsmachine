@@ -42,6 +42,31 @@ sudo systemctl enable --now nginx
 curl -I http://localhost
 ```
 
+## Hands-on commands
+
+```bash
+# On your Linux VM after SSH login:
+sudo apt update && sudo apt install -y nginx git
+echo "<h1>DevOps Lab</h1>" | sudo tee /var/www/html/index.html
+sudo systemctl enable --now nginx
+sudo ufw allow 80/tcp 2>/dev/null || true
+curl -I http://127.0.0.1
+sudo tail -n 5 /var/log/nginx/access.log
+
+mkdir -p ~/site && cd ~/site && git init -b main
+cp /var/www/html/index.html ./index.html 2>/dev/null || echo "<h1>DevOps Lab</h1>" > index.html
+git add index.html && git commit -m "Initial site"
+
+cat > deploy.sh << 'EOF'
+#!/bin/bash
+set -euo pipefail
+sudo cp -r . /var/www/html/
+sudo systemctl reload nginx
+echo "Deploy OK"
+EOF
+chmod +x deploy.sh
+```
+
 ## Hands-on lab
 
 **Objective:** End-to-end beginner server.
