@@ -29,6 +29,34 @@ terraform plan
 terraform apply
 ```
 
+## Hands-on commands
+
+Local Terraform workflow (no cloud apply required for first run):
+
+```bash
+mkdir -p /tmp/tf-lab && cd /tmp/tf-lab
+cat > main.tf << 'EOF'
+terraform {
+  required_version = ">= 1.0"
+  required_providers {
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.5"
+    }
+  }
+}
+resource "local_file" "demo" {
+  filename = "${path.module}/hello.txt"
+  content  = "Terraform lab"
+}
+EOF
+terraform init
+terraform plan -out=tfplan
+terraform apply -auto-approve tfplan
+cat hello.txt
+terraform destroy -auto-approve
+```
+
 ## Hands-on lab
 
 Create one resource (bucket, firewall rule, or DNS record) in a free/low-cost tier. Destroy with `terraform destroy` when done.
