@@ -48,6 +48,20 @@ echo "DevOps learning" > logs/app.log
 cat logs/app.log
 ```
 
+## Hands-on commands
+
+Extended file operations practice:
+
+```bash
+cd ~/devops-lab 2>/dev/null || { mkdir -p ~/devops-lab && cd ~/devops-lab; }
+mkdir -p app logs config
+cp logs/app.log logs/app.log.bak 2>/dev/null || echo "backup" > logs/app.log
+mv logs/app.log.bak logs/archive.log 2>/dev/null || touch logs/archive.log
+grep -r "DevOps" . 2>/dev/null || grep -r "." logs/
+find . -type f
+less -F logs/app.log 2>/dev/null || cat logs/app.log
+```
+
 ## Hands-on lab
 
 **Objective:** Create a small project layout.

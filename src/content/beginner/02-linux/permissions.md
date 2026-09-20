@@ -41,6 +41,19 @@ groups
 whoami
 ```
 
+## Hands-on commands
+
+```bash
+cd ~/devops-lab
+mkdir -p config
+echo "PORT=8080" > config/app.env
+chmod 600 config/app.env
+ls -l config/app.env
+stat -c "%a %U %G" config/app.env 2>/dev/null || stat -f "%OLp %Su %Sg" config/app.env
+id
+sudo -n true 2>/dev/null && echo "sudo available" || echo "sudo may prompt for password"
+```
+
 ## Hands-on lab
 
 **Objective:** Secure a config file.
