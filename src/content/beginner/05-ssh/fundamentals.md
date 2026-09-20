@@ -42,6 +42,18 @@ ssh user@server
 
 (Use your VM user/host; add `-i` if the key path is non-default.)
 
+## Hands-on commands
+
+```bash
+ls -la ~/.ssh 2>/dev/null || mkdir -p ~/.ssh && chmod 700 ~/.ssh
+ssh-keygen -t ed25519 -f ~/.ssh/devops_lab -N "" -C "devops-lab" 2>/dev/null || echo "Key may already exist"
+chmod 600 ~/.ssh/devops_lab 2>/dev/null; chmod 644 ~/.ssh/devops_lab.pub 2>/dev/null
+cat ~/.ssh/devops_lab.pub
+# On the server (replace USER and HOST):
+# ssh-copy-id -i ~/.ssh/devops_lab.pub USER@HOST
+ssh -G example.com 2>/dev/null | grep -E "^(user|hostname|identityfile)" | head -5
+```
+
 ## Hands-on lab
 
 **Objective:** Prepare for passwordless login.
