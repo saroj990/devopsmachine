@@ -42,6 +42,15 @@ journalctl -u ssh -n 20 --no-pager
 
 (Use `sshd` instead of `ssh` on some distributions.)
 
+## Hands-on commands
+
+```bash
+systemctl list-units --type=service --state=running | head -8
+systemctl is-active ssh 2>/dev/null || systemctl is-active sshd
+journalctl -u ssh -n 5 --no-pager 2>/dev/null || journalctl -u sshd -n 5 --no-pager
+systemctl show ssh -p ActiveState -p SubState 2>/dev/null || systemctl show sshd -p ActiveState
+```
+
 ## Hands-on lab
 
 **Objective:** Inspect a service.

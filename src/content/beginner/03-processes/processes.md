@@ -42,6 +42,19 @@ ps aux | grep sleep
 kill %1
 ```
 
+## Hands-on commands
+
+```bash
+ps aux --sort=-%cpu | head -5
+pgrep -a sleep 2>/dev/null || true
+ping -c 20 127.0.0.1 >/dev/null &
+PING_PID=$!
+ps -p $PING_PID -o pid,cmd,%cpu,%mem
+kill $PING_PID
+wait $PING_PID 2>/dev/null
+echo "Exit code: $?"
+```
+
 ## Hands-on lab
 
 **Objective:** Find a process and its PID.
