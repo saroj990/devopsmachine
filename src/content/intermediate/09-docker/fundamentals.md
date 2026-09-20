@@ -32,6 +32,18 @@ docker ps -a
 docker images
 ```
 
+## Hands-on commands
+
+```bash
+docker pull nginx:alpine
+docker run -d --name web-lab -p 8080:80 nginx:alpine
+docker ps --filter name=web-lab
+curl -I http://localhost:8080
+docker logs web-lab --tail 5
+docker stop web-lab && docker rm web-lab
+docker image ls | head -5
+```
+
 ## Hands-on lab
 
 1. Pull and run `nginx` detached on port 8080.
