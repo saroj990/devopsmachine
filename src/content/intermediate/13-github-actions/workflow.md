@@ -32,6 +32,28 @@ jobs:
       - run: npm test
 ```
 
+## Hands-on commands
+
+Create a workflow file locally and validate YAML:
+
+```bash
+mkdir -p /tmp/gh-actions-lab/.github/workflows
+cat > /tmp/gh-actions-lab/.github/workflows/ci.yml << 'EOF'
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Simulated test step"
+EOF
+cd /tmp/gh-actions-lab && git init -q && git add . && git status
+python3 -c "import yaml; yaml.safe_load(open('.github/workflows/ci.yml'))" 2>/dev/null \
+  || echo "Install PyYAML to validate locally, or rely on GitHub Actions editor"
+cat .github/workflows/ci.yml
+```
+
 ## Hands-on lab
 
 Add a job that runs `npm run build`. Fail the workflow if build fails.
