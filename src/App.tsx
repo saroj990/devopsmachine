@@ -15,6 +15,11 @@ function App() {
           <Route path="/course" element={<CoursePage />} />
           <Route path="/beginner" element={<Navigate to="/beginner/devops-intro" replace />} />
           <Route path="/beginner/:lessonId" element={<LessonPage />} />
+          <Route
+            path="/intermediate"
+            element={<Navigate to="/intermediate/docker-fundamentals" replace />}
+          />
+          <Route path="/intermediate/:lessonId" element={<LessonPage />} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/about" element={<AboutPage />} />
         </Route>

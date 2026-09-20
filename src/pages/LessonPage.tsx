@@ -5,11 +5,11 @@ import { MarkdownRenderer } from '../components/MarkdownRenderer'
 import { ProgressBar } from '../components/ProgressBar'
 import { QuizPanel } from '../components/QuizPanel'
 import {
-  allBeginnerLessons,
+  allLessonsForLevel,
   findLesson,
   getNextLessonId,
   getPrevLessonId,
-} from '../data/beginnerCourse'
+} from '../data/courses'
 import { getQuiz } from '../data/quizzes'
 import { getLessonContent, stripFrontmatter } from '../lib/lessons'
 import { levelProgress, loadProgress, markLessonComplete } from '../lib/progress'
@@ -36,12 +36,14 @@ export function LessonPage() {
     )
   }
 
-  const { lesson, module } = found
-  const lessonIds = allBeginnerLessons().map((l) => l.id)
+  const { lesson, module, course } = found
+  const level = lesson.level
+  const lessonIds = allLessonsForLevel(level).map((l) => l.id)
   const pct = levelProgress(lessonIds, progress.completedLessons)
   const prev = getPrevLessonId(lesson.id)
   const next = getNextLessonId(lesson.id)
   const done = progress.completedLessons.includes(lesson.id)
+  const base = `/${level}`
 
   return (
     <div className="lg:grid lg:grid-cols-[1fr_220px] lg:gap-8">
@@ -62,7 +64,7 @@ export function LessonPage() {
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--color-border)] pt-6">
           {prev ? (
             <Link
-              to={`/beginner/${prev}`}
+              to={`${base}/${prev}`}
               className="inline-flex items-center gap-1 text-sm text-[var(--color-muted)] hover:text-white"
             >
               <ChevronLeft className="h-4 w-4" /> Previous
@@ -82,7 +84,7 @@ export function LessonPage() {
           </button>
           {next ? (
             <Link
-              to={`/beginner/${next}`}
+              to={`${base}/${next}`}
               className="inline-flex items-center gap-1 text-sm font-medium text-[var(--color-accent)]"
             >
               Next <ChevronRight className="h-4 w-4" />
@@ -96,8 +98,8 @@ export function LessonPage() {
       </div>
       <aside className="mt-8 lg:mt-0">
         <div className="sticky top-24 rounded-xl border border-[var(--color-border)] bg-[var(--color-panel)] p-4">
-          <p className="text-sm font-medium text-white">Beginner track</p>
-          <ProgressBar value={pct} label="Overall" />
+          <p className="text-sm font-medium text-white">{course.title} track</p>
+          <ProgressBar value={pct} label="Level progress" />
           {progress.quizScores[lesson.id] !== undefined && (
             <p className="mt-3 text-xs text-[var(--color-muted)]">
               Quiz score: {progress.quizScores[lesson.id]}%
