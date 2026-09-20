@@ -48,6 +48,19 @@ On paper or a notes file, sketch your last project:
 
 Circle steps that were **manual** — those are DevOps improvement candidates.
 
+## Hands-on commands
+
+Capture a simple lifecycle map in the terminal:
+
+```bash
+mkdir -p ~/devops-lifecycle-lab && cd ~/devops-lifecycle-lab
+printf '%s\n' plan code build test release deploy operate monitor > lifecycle-stages.txt
+cat lifecycle-stages.txt
+echo "manual: ssh to server and restart app by hand" >> manual-steps.txt
+echo "automate: pipeline runs tests on git push" >> automation-ideas.txt
+wc -l manual-steps.txt automation-ideas.txt
+```
+
 ## Hands-on lab
 
 **Objective:** Map a simple application lifecycle.

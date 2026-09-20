@@ -51,6 +51,19 @@ npm test
 systemctl restart myapp
 ```
 
+## Hands-on commands
+
+Simulate a minimal release checklist as shell commands:
+
+```bash
+cd ~/devops-lifecycle-lab 2>/dev/null || mkdir -p ~/devops-lifecycle-lab && cd ~/devops-lifecycle-lab
+git init -q 2>/dev/null || true
+echo "v1.0.0" > VERSION
+git add VERSION 2>/dev/null && git commit -m "Bump version" 2>/dev/null || true
+echo "Running smoke test..." && curl -sf -o /dev/null -w "HTTP %{http_code}\n" https://example.com || echo "Smoke test failed (expected if offline)"
+echo "Deploy step would run here: rsync or kubectl apply"
+```
+
 ## Hands-on lab
 
 **Objective:** Identify automation wins.
