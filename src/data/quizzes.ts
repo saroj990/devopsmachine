@@ -1,6 +1,7 @@
 import type { Quiz } from '../types/course'
+import { intermediateQuizzes } from './intermediateQuizzes'
 
-export const quizzes: Record<string, Quiz> = {
+const beginnerQuizzes: Record<string, Quiz> = {
   'devops-intro': {
     lessonId: 'devops-intro',
     questions: [
@@ -632,6 +633,11 @@ export const quizzes: Record<string, Quiz> = {
       },
     ],
   },
+}
+
+export const quizzes: Record<string, Quiz> = {
+  ...beginnerQuizzes,
+  ...intermediateQuizzes,
 }
 
 export function getQuiz(lessonId: string): Quiz | undefined {
